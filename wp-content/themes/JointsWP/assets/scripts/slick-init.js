@@ -16,7 +16,8 @@
 		$('.slider').slick({
 			dots: true,
 			infinite: true,
-			centerMode: true,
+			arrows: true,
+			// centerMode: true, 
 			speed: 300,
 			slidesToShow: 1,
 		});

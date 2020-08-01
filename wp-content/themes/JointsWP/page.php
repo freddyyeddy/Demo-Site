@@ -40,9 +40,9 @@ CrewList;
 
 	echo '</ul>';
 }
-
+ SlicknSlide("crew", "50", "50", "1");
 // always good to see exactly what you are working with
-console_log($crew);
+// console_log($crew);
 	
 				 
 				 ?>
@@ -63,8 +63,9 @@ console_log($crew);
     <div class="orbit-caption">
       Caption Three.
     </div>
-  </li> -->					
-			    					
+  </li> -->				
+  <?php //Generating Lower Slick Slide SHow   ?>
+  <?php  SlicknSlide("slick_slider", "50", "50");		?>			
 			</main> <!-- end #main -->
 		    
 		</div> <!-- end #inner-content -->
@@ -72,43 +73,3 @@ console_log($crew);
 	</div> <!-- end #content -->
 
 <?php get_footer(); ?>
-
-
-
-<?php
-
-
-// slider_image = subfield
-
-function agero_slider() {
-
-if( have_rows('slick_slider') ):
-  		
-
-echo <<<EOT
-<div style="width: 50vw;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
-EOT;
-// loop through the rows of data
-    while ( have_rows('slick_slider') ) : the_row();
-    // display a sub field value
-    //vars
-    $image = get_sub_field('slider_image'); 
-    // var_dump($image);
-    ?>
-	<div><img data-lazy="<?php echo $image; ?>"/></div>
-  <?php      
-    endwhile;
-echo '</div>';
-
-
-else :
-
-    // no rows found
-
-endif;
-
-}
-agero_slider();
-// $images = get_field('crew');
-// var_dump($images);
-?>

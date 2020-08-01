@@ -57,6 +57,11 @@ function themeprefix_slick_enqueue_scripts_styles() {
 	wp_enqueue_style( 'slickcsstheme', get_stylesheet_directory_uri(). '/assets/styles/slick-theme.css', '1.6.0', 'all');
 
 };
+
+
+
+// Simple Function to Inject Var-Dump Into Console
+
 function console_log($output, $with_script_tags = true) {
     $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
 ');';
@@ -65,3 +70,81 @@ function console_log($output, $with_script_tags = true) {
     }
     echo $js_code;
 }
+
+
+
+// Function to generate the needed slick Slide Code Based on AFC Variables.
+
+function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top") {
+$field = get_field($field);
+console_log($field);
+if( $field){
+	switch ($inception) {
+		case '1':
+			echo <<<EOT
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
+EOT;
+  foreach ($field as $fieldchild) {
+    if(is_array($fieldchild)){
+
+$fieldchild = array_values($fieldchild);
+echo <<<ImageForSlick
+<div><img data-lazy="$fieldchild[0]"/></div>
+<h2>$fieldchild[1]</h2>
+ImageForSlick;
+    }else{
+      echo <<<ImageforSlick
+	  <div><img data-lazy="$fieldchild"/></div>
+ImageforSlick;
+// console_log($fieldchild);
+    }
+  }
+  echo "</div>";
+break;
+		case '2':
+		echo <<<EOT
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
+EOT;
+  foreach ($field as $fieldchild) {
+    if(is_array($fieldchild)){
+
+$fieldchild = array_values($fieldchild);
+echo <<<ImageForSlick
+<div><img data-lazy="$fieldchild[0]"/></div>
+<h2>$fieldchild[1]</h2>
+<h1>$fieldchild[2]</h1>
+ImageForSlick;
+    }else{
+      echo <<<ImageforSlick
+	  <div><img data-lazy="$fieldchild"/></div>
+ImageforSlick;
+// console_log($fieldchild);
+    }
+  }
+  echo "</div>";
+			break;
+		default:
+			echo <<<EOT
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
+EOT;
+  foreach ($field as $fieldchild) {
+    if(is_array($fieldchild)){
+
+$fieldchild = array_values($fieldchild);
+echo <<<ImageForSlick
+<div><img data-lazy="$fieldchild[0]"/></div>
+ImageForSlick;
+    }else{
+      echo <<<ImageforSlick
+      <div><img data-lazy="$fieldchild"/></div>
+ImageforSlick;
+// console_log($fieldchild);
+    }
+  }
+  echo "</div>";
+
+			break;
+	}}
+
+// console_log($field);
+};

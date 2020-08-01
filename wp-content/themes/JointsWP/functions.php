@@ -57,18 +57,19 @@ function my_acf_init_block_types() {
         // registering the block.
         acf_register_block_type(array(
             'name'              => 'AFC Slider',
-            'title'             => __('SlickSLider'),
-            'description'       => __('A custom slider field'),
+            'title'             => 'SlickSLider',
+            'description'       => 'A custom slider field',
             'render_template'   => 'parts/blocks/SlickSLide/SlicknSlide.php',
             'category'          => 'widgets',
             'align'             => 'full',
-            'icon'              => 'dashicons-align-center',
+            'icon'              => 'align-center',
             'keywords'          => array( 'Picture', 'slide' ),
             'enqueue_assets' 	=> function(){
-	wp_enqueue_script( 'slickjs-init', get_stylesheet_directory_uri(). '/assets/scripts/slick-init.js', array( 'slickjs' ), '1.6.0', true );
-  wp_enqueue_style( 'slick', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
-	wp_enqueue_style( 'slick-theme', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', array(), '1.8.1' );
-	wp_enqueue_script( 'slick', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
+  wp_enqueue_style( 'slick', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
+	wp_enqueue_style( 'slick-theme', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', array(), '1.8.1' );
+  wp_enqueue_script( 'slick', '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
+    wp_enqueue_script( 'block-slider', get_template_directory_uri() . '/assets/scripts/slick-init.js', array(), '0.0.1', true );
+
 },
         ));
         }}
@@ -88,11 +89,16 @@ function console_log($output, $with_script_tags = true) {
 
 // Function to generate the needed slick Slide Code Based on AFC Variables.
 
-function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top") {
-
+function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true) {
+$lzld = '';
+$lzsrc = "src";
 // Startdiv code
+if ($lz){
+  $lzld = '"lazyLoad": "ondemand",';
+  $lzsrc = 'data-lazy';
+}
 $startdiv = <<<StartDiv
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
 StartDiv;
 
 $field = get_field($field);
@@ -107,12 +113,13 @@ if( $field){
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
-<div><img data-lazy="$fieldchild[0]"/></div>
+<div><img $lzsrc="$fieldchild[0]"/></div>
 <h2>$fieldchild[1]</h2>
 ImageForSlick;
+
     }else{
       echo <<<ImageforSlick
-	  <div><img data-lazy="$fieldchild"/></div>
+	  <div><img $lzsrc="$fieldchild"/></div>
 ImageforSlick;
 // console_log($fieldchild);
     }
@@ -125,13 +132,13 @@ break;
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
-<div><img data-lazy="$fieldchild[0]"/></div>
+<div><img $lzsrc="$fieldchild[0]"/></div>
 <h2>$fieldchild[1]</h2>
 <h1>$fieldchild[2]</h1>
 ImageForSlick;
     }else{
       echo <<<ImageforSlick
-	  <div><img data-lazy="$fieldchild"/></div>
+	  <div><img $lzsrczy="$fieldchild"/></div>
 ImageforSlick;
 // console_log($fieldchild);
     }
@@ -144,11 +151,11 @@ ImageforSlick;
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
-<div><img data-lazy="$fieldchild[0]"/></div>
+<div><img $lzsrc="$fieldchild[0]"/></div>
 ImageForSlick;
     }else{
       echo <<<ImageforSlick
-      <div><img data-lazy="$fieldchild"/></div>
+      <div><img $lzsrc="$fieldchild"/></div>
 ImageforSlick;
 // console_log($fieldchild);
     }

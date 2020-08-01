@@ -13,25 +13,24 @@
 	 * @return  void
 	 */
 	var initializeBlock = function ($block) {
-		$block.find('.slick-slide-zzz').slick({
-			lazyLoad: "ondemand",
-				dots: true,
-				arrows: true,
-				infinite: true,
-				autoplay: true
+		$('.slider').slick({
+			dots: true,
+			infinite: true,
+			speed: 300,
+			slidesToShow: 1,
 		});
+		console.log("Initilaized");
 	}
 
 	// Initialize each block on page load (front end).
 	$(document).ready(function () {
-		$('.slick-slide-zzz').each(function () {
-			initializeBlock($(this));
-		});
+		
+			initializeBlock();
 	});
 
 	// Initialize dynamic block preview (editor).
 	if (window.acf) {
-		window.acf.addAction('render_block_preview/type=slider', initializeBlock);
+		window.acf.addAction('render_block_preview', initializeBlock);
 	}
 
 })(jQuery);

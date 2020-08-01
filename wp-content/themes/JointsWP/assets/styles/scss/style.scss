@@ -7,15 +7,15 @@ all of your Sass files so they can compile into one
 CSS file. 
 
 ******************************************************************/
-
+ 
 // Import local Foundation overrides - Don't link to Bower version as it will be overwritten whenever updated
 @import "settings";
 
 // Import foundation.scss from vendor files
-@import "../../../node_modules/foundation-sites/scss/foundation";
+@import "../../../../../../node_modules/foundation-sites/scss/foundation";
 
 // Import Motion-UI from vendor files
-@import "../../../node_modules/motion-ui/src/motion-ui";
+@import "../../../../../../node_modules/motion-ui/src/motion-ui";
 @include motion-ui-transitions;
 @include motion-ui-animations;
 
@@ -74,7 +74,7 @@ CSS file.
         position: absolute;
         bottom: 0;
         left: 0;
-        background-color: #000;
+        background-color: #010;
         color: #FFF;
         opacity: 0.75;
         width: 100%;

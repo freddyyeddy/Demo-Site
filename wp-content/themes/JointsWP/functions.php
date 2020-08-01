@@ -46,7 +46,7 @@ require_once(get_template_directory().'/functions/translation/translation.php');
 // Customize the WordPress admin
 // require_once(get_template_directory().'/functions/admin.php'); 
 
-// Adding (Read Making) custom AFC block for gutenberg
+// Adding (Read->Making) custom AFC block for gutenberg
 
 add_action('acf/init', 'my_acf_init_block_types');
 function my_acf_init_block_types() {
@@ -114,7 +114,11 @@ if( $field){
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
 <div><img $lzsrc="$fieldchild[0]"/></div>
-<h2>$fieldchild[1]</h2>
+<div class="overlay dark"></div>
+      <div class="content">
+       <h2>$fieldchild[1]</h2>
+        </div>
+
 ImageForSlick;
 
     }else{
@@ -133,8 +137,13 @@ break;
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
 <div><img $lzsrc="$fieldchild[0]"/></div>
-<h2>$fieldchild[1]</h2>
-<h1>$fieldchild[2]</h1>
+     <div class="overlay dark"></div>
+      
+      
+      <div class="content">
+        <h2>$fieldchild[1]</h2
+        <p>$fieldchild[2]</p>
+      </div>
 ImageForSlick;
     }else{
       echo <<<ImageforSlick
@@ -160,6 +169,16 @@ ImageforSlick;
 // console_log($fieldchild);
     }
   }
+$field = array_values($field);
+  echo <<<Titleandstuff
+     <div class="overlay dark"></div>
+      
+      
+      <div class="content">
+        <h2>$fieldchild[1]</h2
+        <p>$fieldchild[2]</p>
+      </div>
+Titleandstuff;
 
 			break;
   }

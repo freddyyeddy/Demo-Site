@@ -48,7 +48,7 @@ echo '<div class="slider-for">';
     $image = get_sub_field('slider_image'); 
     // var_dump($image);
     ?>
-	<div><img src="<?php echo $image; ?>"/></div>
+	<div><img data-lazy="<?php echo $image; ?>"/></div>
   <?php      
     endwhile;
 echo '</div>
@@ -60,7 +60,7 @@ echo '</div>
     $image = get_sub_field('slider_image'); 
     // var_dump($image);
     ?>
-	<div><img src="<?php echo $image; ?>"/></div>
+	<div><img data-lazy="<?php echo $image; ?>"/></div>
   <?php      
     endwhile;
 echo '</div>';

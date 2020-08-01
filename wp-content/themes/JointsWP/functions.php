@@ -45,20 +45,6 @@ require_once(get_template_directory().'/functions/translation/translation.php');
 
 // Customize the WordPress admin
 // require_once(get_template_directory().'/functions/admin.php'); 
-add_action( 'wp_enqueue_scripts', 'themeprefix_slick_enqueue_scripts_styles' );
-// Enqueue Slick scripts and styles
-
-function themeprefix_slick_enqueue_scripts_styles() {
-
-	wp_enqueue_script( 'slickjs', get_stylesheet_directory_uri() . '/assets/scripts/slick.min.js', array( 'jquery' ), '1.6.0', true );
-	wp_enqueue_script( 'slickjs-init', get_stylesheet_directory_uri(). '/assets/scripts/slick-init.js', array( 'slickjs' ), '1.6.0', true );
-
-	wp_enqueue_style( 'slickcss', get_stylesheet_directory_uri() . '/assets/styles/slick.css', '1.6.0', 'all');
-	wp_enqueue_style( 'slickcsstheme', get_stylesheet_directory_uri(). '/assets/styles/slick-theme.css', '1.6.0', 'all');
-
-};
-
-
 
 // Adding (Read Making) custom AFC block for gutenberg
 
@@ -74,12 +60,18 @@ function my_acf_init_block_types() {
             'title'             => __('SlickSLider'),
             'description'       => __('A custom slider field'),
             'render_template'   => 'parts/blocks/SlickSLide/SlicknSlide.php',
-            'category'          => 'Slider',
+            'category'          => 'widgets',
+            'align'             => 'full',
             'icon'              => 'dashicons-align-center',
             'keywords'          => array( 'Picture', 'slide' ),
+            'enqueue_assets' 	=> function(){
+	wp_enqueue_script( 'slickjs-init', get_stylesheet_directory_uri(). '/assets/scripts/slick-init.js', array( 'slickjs' ), '1.6.0', true );
+  wp_enqueue_style( 'slick', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(), '1.8.1' );
+	wp_enqueue_style( 'slick-theme', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css', array(), '1.8.1' );
+	wp_enqueue_script( 'slick', 'http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
+},
         ));
-    }
-}
+        }}
 
 // Simple Function to Inject Var-Dump Into Console
 

@@ -87,9 +87,14 @@ function console_log($output, $with_script_tags = true) {
 
 
 
-// Function to generate the needed slick Slide Code Based on AFC Variables.
+
+
+// Function to generate the needed slick Slide Code Based on AFC Variables
 
 function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true) {
+  $malow = acf_get_field_groups();
+  var_dump($malow[1]);
+  console_log($malow[1]);
 $lzld = '';
 $lzsrc = "src";
 // Startdiv code
@@ -102,7 +107,7 @@ $startdiv = <<<StartDiv
 StartDiv;
 
 $field = get_field($field);
-console_log($field);
+// console_log($field);
 if( $field){
   echo $startdiv;
 	switch ($inception) {
@@ -170,13 +175,15 @@ ImageforSlick;
     }
   }
 $field = array_values($field);
+// console_log($field);
+// var_dump(get_fields($field));
   echo <<<Titleandstuff
      <div class="overlay dark"></div>
       
       
       <div class="content">
-        <h2>$fieldchild[1]</h2
-        <p>$fieldchild[2]</p>
+        <h2>$field[0]</h2
+        <p>$field[1]</p>
       </div>
 Titleandstuff;
 

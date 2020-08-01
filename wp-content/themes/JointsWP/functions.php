@@ -85,16 +85,24 @@ function console_log($output, $with_script_tags = true) {
     echo $js_code;
 }
 
+// Simple array search for fuzzy field grabing
 
+function array_find($needle, array $haystack)
+{
+    foreach ($haystack as $key => $value) {
+        if (false !== stripos($value, $needle)) {
+            return $value;
+        }
+    }
+    return false;
+}
 
 
 
 // Function to generate the needed slick Slide Code Based on AFC Variables
 
 function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true) {
-  $malow = acf_get_field_groups();
-  var_dump($malow[1]);
-  console_log($malow[1]);
+  $fieldarry = get_fields();
 $lzld = '';
 $lzsrc = "src";
 // Startdiv code
@@ -103,7 +111,7 @@ if ($lz){
   $lzsrc = 'data-lazy';
 }
 $startdiv = <<<StartDiv
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider overlay-container data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
 StartDiv;
 
 $field = get_field($field);
@@ -175,16 +183,16 @@ ImageforSlick;
     }
   }
 $field = array_values($field);
+$title = $fieldarry[array_find("title", array_keys(get_fields()))];
+$description = $fieldarry[array_find("descrip", array_keys(get_fields()))];
 // console_log($field);
 // var_dump(get_fields($field));
   echo <<<Titleandstuff
-     <div class="overlay dark"></div>
-      
-      
-      <div class="content">
-        <h2>$field[0]</h2
-        <p>$field[1]</p>
+     <div class="overlay"
+        <h2>$title</h2
+        <p>$description</p>
       </div>
+      
 Titleandstuff;
 
 			break;

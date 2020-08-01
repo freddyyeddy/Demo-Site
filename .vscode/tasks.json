@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"path": "wp-content/themes/JointsWP/",
+			"problemMatcher": [
+				"$node-sass"
+			],
+			"group": "build",
+			"label": "npm: build - wp-content/themes/JointsWP",
+			"detail": "gulp"
+		},
+		{
+			"type": "npm",
+			"script": "watch",
+			"path": "wp-content/themes/JointsWP/",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: watch - wp-content/themes/JointsWP",
+			"detail": "gulp watch"
+		}
+	]
+}

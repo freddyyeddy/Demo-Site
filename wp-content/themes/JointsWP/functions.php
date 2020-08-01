@@ -60,6 +60,27 @@ function themeprefix_slick_enqueue_scripts_styles() {
 
 
 
+// Adding (Read Making) custom AFC block for gutenberg
+
+add_action('acf/init', 'my_acf_init_block_types');
+function my_acf_init_block_types() {
+
+    // Check function exists.
+    if( function_exists('acf_register_block_type') ) {
+
+        // registering the block.
+        acf_register_block_type(array(
+            'name'              => 'AFC Slider',
+            'title'             => __('SlickSLider'),
+            'description'       => __('A custom slider field'),
+            'render_template'   => 'parts/blocks/SlickSLide/SlicknSlide.php',
+            'category'          => 'Slider',
+            'icon'              => 'dashicons-align-center',
+            'keywords'          => array( 'Picture', 'slide' ),
+        ));
+    }
+}
+
 // Simple Function to Inject Var-Dump Into Console
 
 function console_log($output, $with_script_tags = true) {
@@ -76,14 +97,19 @@ function console_log($output, $with_script_tags = true) {
 // Function to generate the needed slick Slide Code Based on AFC Variables.
 
 function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top") {
+
+// Startdiv code
+$startdiv = <<<StartDiv
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
+StartDiv;
+
 $field = get_field($field);
 console_log($field);
 if( $field){
+  echo $startdiv;
 	switch ($inception) {
 		case '1':
-			echo <<<EOT
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
-EOT;
+
   foreach ($field as $fieldchild) {
     if(is_array($fieldchild)){
 
@@ -102,9 +128,6 @@ ImageforSlick;
   echo "</div>";
 break;
 		case '2':
-		echo <<<EOT
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
-EOT;
   foreach ($field as $fieldchild) {
     if(is_array($fieldchild)){
 
@@ -124,9 +147,6 @@ ImageforSlick;
   echo "</div>";
 			break;
 		default:
-			echo <<<EOT
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slick-slide-zzz" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500,}'>
-EOT;
   foreach ($field as $fieldchild) {
     if(is_array($fieldchild)){
 
@@ -141,10 +161,12 @@ ImageforSlick;
 // console_log($fieldchild);
     }
   }
-  echo "</div>";
 
 			break;
-	}}
+  }
+  // Closing Div
+    echo "</div>";
+}
 
 // console_log($field);
 };

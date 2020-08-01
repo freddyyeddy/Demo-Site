@@ -56,4 +56,12 @@ function themeprefix_slick_enqueue_scripts_styles() {
 	wp_enqueue_style( 'slickcss', get_stylesheet_directory_uri() . '/assets/styles/slick.css', '1.6.0', 'all');
 	wp_enqueue_style( 'slickcsstheme', get_stylesheet_directory_uri(). '/assets/styles/slick-theme.css', '1.6.0', 'all');
 
+};
+function console_log($output, $with_script_tags = true) {
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . 
+');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
 }

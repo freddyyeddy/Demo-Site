@@ -1,4 +1,10 @@
 jQuery(document).ready(function($){
 
-	$('.slick_slide').slick();
+	$('.slick-slide-zzz').slick({
+		lazyLoad: "ondemand",
+		dots: true,
+		arrows: true,
+		infinite: true,
+		autoplay: true
+	});
 });

@@ -35,6 +35,6 @@ $text_color = get_field('text_color');
 ?>
 
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-   <?php SlicknSlide('slick_slider', 10,10, 1); ?>
+   <?php SlicknSlide('slick_slider', 10,10); ?>
    <span>Poogle</span>
 </div>

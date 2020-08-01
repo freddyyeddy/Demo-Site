@@ -40,20 +40,12 @@ get_header(); ?>
 function agero_slider() {
 
 if( have_rows('slick_slider') ):
-echo '<div class="slider-for">';
- 	// loop through the rows of data
-    while ( have_rows('slick_slider') ) : the_row();
-    // display a sub field value
-    //vars
-    $image = get_sub_field('slider_image'); 
-    // var_dump($image);
-    ?>
-	<div><img data-lazy="<?php echo $image; ?>"/></div>
-  <?php      
-    endwhile;
-echo '</div>
-      <div class="slider-nav">';
- 	// loop through the rows of data
+  		
+
+echo <<<EOT
+<div class="slick_slide" data-slick=' {"slidesToShow": 1, "slidesToScroll": 1, "lazyLoad": "ondemand", "autoplay": true, "autoplaySpeed": 1000, "dots": true, "arrows": true, "adaptiveHeight": true, "infinite": true, "variableWidth": true}'>;
+EOT;
+// loop through the rows of data
     while ( have_rows('slick_slider') ) : the_row();
     // display a sub field value
     //vars
@@ -65,6 +57,7 @@ echo '</div>
     endwhile;
 echo '</div>';
 
+
 else :
 
     // no rows found
@@ -73,6 +66,6 @@ endif;
 
 }
 agero_slider();
-$images = get_field('crew');
-var_dump($images);
+// $images = get_field('crew');
+// var_dump($images);
 ?>

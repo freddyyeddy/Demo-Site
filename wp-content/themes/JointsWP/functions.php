@@ -110,11 +110,8 @@ if ($lz){
   $lzld = '"lazyLoad": "ondemand",';
   $lzsrc = 'data-lazy';
 }
-if($over){
-  $container = "<div class Overlay-Container>";
-}
 $startdiv = <<<StartDiv
-<div class="Overlay-Container"><div style="width: {$VW}vw; Height: {$VH}vh;" class="slider" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider Overlay-Container" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
 StartDiv;
 
 $field = get_field($field);
@@ -176,11 +173,11 @@ ImageforSlick;
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
-<img $lzsrc="$fieldchild[0]"/>
+<div><img $lzsrc="$fieldchild[0]"/></div>
 ImageForSlick;
     }else{
       echo <<<ImageforSlick
-      <img $lzsrc="$fieldchild"/>
+      <div><img $lzsrc="$fieldchild"/></div>
 ImageforSlick;
 // console_log($fieldchild);
     }
@@ -195,7 +192,6 @@ $description = $fieldarry[array_find("descrip", array_keys(get_fields()))];
      <div class="overlay">
         <h2>$title</h2>
          <p>$description</p>
-      </div>
       </div>
 Titleandstuff;
 			break;

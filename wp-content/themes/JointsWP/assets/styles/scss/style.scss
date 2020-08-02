@@ -67,18 +67,16 @@ CSS file.
 // Import your custom styles
 @import "global";
 
-.Overlay-Container {
+.Overlay-Container { 
     position: relative;
 }
 
 .overlay {
     position: absolute;
-    top: 50%;
+    top: 50%; 
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     color: white;
     font-size: 36px;
-    -webkit-transition: all 300ms ease;
     transition: all 300ms ease;
-}
+} 

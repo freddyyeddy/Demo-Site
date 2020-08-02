@@ -69,14 +69,18 @@ CSS file.
 
 .Overlay-Container { 
     position: relative;
+    margin: auto;
 }
 
 .overlay {
-    position: absolute;
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 36px;
-    transition: all 300ms ease;
+position: absolute;
+top: 60%;
+border-radius: .2em;
+padding: .5em;
+background-color: #8a8a8a78;
+left: 60%;
+transform: translate(-50%, -50%);
+color: white;
+font-size: 36px;
+transition: all 300ms ease;
 } 

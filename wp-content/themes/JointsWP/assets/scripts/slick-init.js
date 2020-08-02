@@ -1,5 +1,18 @@
 (function ($) {
 // Initilizing Slick  and implementing back end preview as well
+	$('.slider').on('init', function (event, slick, direction) {
+
+		// check to see if there are enough Sliderimgs For Dots or arrows
+		if ($('.slider img').length <= $('.slider').attr("data-cols") * $('.slider').attr("data-rows")) {
+			// remove arrows and dots... well hide them
+			$('.slick-prev').hide();
+			$('.slick-next').hide();
+			$('.slick-dots').hide();
+			console.log("hiding dots");
+			
+
+		}
+	});
 	var initializeBlock = function ($block) {
 		$('.slider').slick({
 			dots: true,

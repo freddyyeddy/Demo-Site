@@ -47,6 +47,8 @@ require_once(get_template_directory().'/functions/translation/translation.php');
 // require_once(get_template_directory().'/functions/admin.php'); 
 
 // Adding (Read->Making) custom AFC block for gutenberg
+add_theme_support( 'editor-styles' );
+add_editor_style( 'assets/styles/style.css' );
 
 add_action('acf/init', 'my_acf_init_block_types');
 function my_acf_init_block_types() {
@@ -61,6 +63,7 @@ function my_acf_init_block_types() {
             'description'       => 'A custom slider field',
             'render_template'   => 'parts/blocks/SlickSLide/SlicknSlide.php',
             'category'          => 'widgets',
+            'mode' => 'auto',
             'align'             => 'full',
             'icon'              => 'align-center',
             'keywords'          => array( 'Picture', 'slide' ),
@@ -71,6 +74,7 @@ function my_acf_init_block_types() {
     wp_enqueue_script( 'block-slider', get_template_directory_uri() . '/assets/scripts/slick-init.js', array(), '0.0.1', true );
 
 },
+
         ));
         }}
 
@@ -99,19 +103,21 @@ function array_find($needle, array $haystack)
 
 
 
-// Function to generate the needed slick Slide Code Based on AFC Variables
+// Function to generate the needed slick Slide Code
 
-function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true, $over =false) {
-  $fieldarry = get_fields();
+function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true, $rows = 1, $cols = 1) {
+// setting variables
+ $fieldarry = get_fields();
 $lzld = '';
 $lzsrc = "src";
-// Startdiv code
+// testing for lazy loading attribute
 if ($lz){
-  $lzld = '"lazyLoad": "ondemand",';
+  $lzld = ', "lazyLoad": "ondemand"';
   $lzsrc = 'data-lazy';
 }
+// Initial Div with Baked in Settings to centeralize Location of them
 $startdiv = <<<StartDiv
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider Overlay-Container" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
+<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider Overlay-Container" data-rows="$rows" data-cols="$cols" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplay": "true", "autoplaySpeed": 1500, "rows":$rows, "slidesPerRow":$cols $lzld}'>
 StartDiv;
 
 $field = get_field($field);
@@ -119,6 +125,20 @@ $field = get_field($field);
 if( $field){
   echo $startdiv;
 	switch ($inception) {
+    case '0':
+      foreach ($field as $fieldchild) {
+       if(is_array($fieldchild)){
+         $fieldchild = array_values($fieldchild);
+        echo <<<Nolayers
+        <div><img $lzsrc="$fieldchild[0]"/></div>
+Nolayers;
+       }else{
+        echo <<<ImageforSlick
+	       <div><img $lzsrc="$fieldchild"/></div>
+ImageforSlick;
+    }};
+      break;
+
 		case '1':
 
   foreach ($field as $fieldchild) {
@@ -126,12 +146,12 @@ if( $field){
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
+<div class="Overlay-Container">
 <div><img $lzsrc="$fieldchild[0]"/></div>
-<div class="overlay dark"></div>
-      <div class="content">
-       <h2>$fieldchild[1]</h2>
-        </div>
-
+      <span class="overlay">
+        <h2>$fieldchild[1]</h2
+     </span>
+</div>
 ImageForSlick;
 
     }else{
@@ -149,18 +169,25 @@ break;
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
+<div class="Overlay-Container">
 <div><img $lzsrc="$fieldchild[0]"/></div>
-     <div class="overlay dark"></div>
       
-      
-      <div class="content">
+           
+      <span class="overlay">
         <h2>$fieldchild[1]</h2
         <p>$fieldchild[2]</p>
-      </div>
+     </span>
+     </div>
 ImageForSlick;
     }else{
       echo <<<ImageforSlick
-	  <div><img $lzsrczy="$fieldchild"/></div>
+    <div class="Overlay-Container">
+    <div><img $lzsrczy="$fieldchild"/></div>
+          <span class="overlay">
+        <h2>$fieldchild[1]</h2
+        <p>$fieldchild[2]</p>
+     </span>
+     </div>
 ImageforSlick;
 // console_log($fieldchild);
     }
@@ -189,10 +216,10 @@ $description = $fieldarry[array_find("descrip", array_keys(get_fields()))];
 // var_dump(get_fields($field));
   echo <<<Titleandstuff
   </div>
-     <div class="overlay">
-        <h2>$title</h2>
+     <span class="overlay">
+        <h1>$title</h1>
          <p>$description</p>
-      </div>
+      </span>
 Titleandstuff;
 			break;
   }

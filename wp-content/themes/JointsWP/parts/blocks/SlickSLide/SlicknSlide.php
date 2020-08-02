@@ -17,7 +17,7 @@ if( !empty($block['align']) ) {
 
 ?>
 
-<div style="overflow: hidden;" id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
+<div style="overflow: hidden; width : 100%" id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
   <?php //SlicknSlide Usage Field Name, VW, VH, Lazy Loading Boolean ?>
    <?php SlicknSlide('slick_slider', 50, 50); ?>
 </div>

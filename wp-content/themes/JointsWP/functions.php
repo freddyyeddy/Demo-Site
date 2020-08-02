@@ -101,7 +101,7 @@ function array_find($needle, array $haystack)
 
 // Function to generate the needed slick Slide Code Based on AFC Variables
 
-function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true) {
+function SlicknSlide($field, $VW = 100, $VH = 100, $inception = "top", $lz = true, $over =false) {
   $fieldarry = get_fields();
 $lzld = '';
 $lzsrc = "src";
@@ -110,8 +110,11 @@ if ($lz){
   $lzld = '"lazyLoad": "ondemand",';
   $lzsrc = 'data-lazy';
 }
+if($over){
+  $container = "<div class Overlay-Container>";
+}
 $startdiv = <<<StartDiv
-<div style="width: {$VW}vw; Height: {$VH}vh;" class="slider overlay-container data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
+<div class="Overlay-Container"><div style="width: {$VW}vw; Height: {$VH}vh;" class="slider" data-slick='{"slidesToShow": 1, "slidesToScroll": 1, "autoplaySpeed": 1500, $lzld}'>
 StartDiv;
 
 $field = get_field($field);
@@ -167,17 +170,17 @@ ImageforSlick;
   }
   echo "</div>";
 			break;
-		default:
+    default:
   foreach ($field as $fieldchild) {
     if(is_array($fieldchild)){
 
 $fieldchild = array_values($fieldchild);
 echo <<<ImageForSlick
-<div><img $lzsrc="$fieldchild[0]"/></div>
+<img $lzsrc="$fieldchild[0]"/>
 ImageForSlick;
     }else{
       echo <<<ImageforSlick
-      <div><img $lzsrc="$fieldchild"/></div>
+      <img $lzsrc="$fieldchild"/>
 ImageforSlick;
 // console_log($fieldchild);
     }
@@ -188,18 +191,18 @@ $description = $fieldarry[array_find("descrip", array_keys(get_fields()))];
 // console_log($field);
 // var_dump(get_fields($field));
   echo <<<Titleandstuff
-     <div class="overlay"
-        <h2>$title</h2
-        <p>$description</p>
+  </div>
+     <div class="overlay">
+        <h2>$title</h2>
+         <p>$description</p>
       </div>
-      
+      </div>
 Titleandstuff;
-
 			break;
   }
   // Closing Div
     echo "</div>";
 }
 
-// console_log($field);
+// console_log($field); 
 };

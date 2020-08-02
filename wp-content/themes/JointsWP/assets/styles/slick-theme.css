@@ -1,19 +1,9 @@
 @charset 'UTF-8';
 
-.slick-slide-zzz>div>h2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 46px;
-    -webkit-transition: all 300ms ease;
-    transition: all 300ms ease;
-    text-transform: uppercase;
-}
 
 /* Slider */
+
+
 .slick-loading .slick-list
 {
     background: #fff url('./ajax-loader.gif') center center no-repeat;
@@ -33,7 +23,7 @@
 .slick-prev,
 .slick-next
 {
-    font-size: 0;
+    font-size: 8px;
     line-height: 0;
 
     position: absolute;
@@ -81,7 +71,7 @@
 .slick-next:before
 {
     font-family: 'slick';
-    font-size: 20px;
+    font-size: 1em;
     line-height: 1;
 
     opacity: .75;
@@ -154,8 +144,8 @@
 
     display: inline-block;
 
-    width: 20px;
-    height: 20px;
+    width: .2em;
+    height: .2em;
     margin: 0 5px;
     padding: 0;
 
@@ -216,3 +206,5 @@
     opacity: .75;
     color: black;
 }
+
+

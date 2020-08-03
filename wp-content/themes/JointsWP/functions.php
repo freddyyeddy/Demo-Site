@@ -216,10 +216,10 @@ $description = $fieldarry[array_find("descrip", array_keys(get_fields()))];
 // var_dump(get_fields($field));
   echo <<<Titleandstuff
   </div>
-     <span class="overlay">
+     <div class="overlay">
         <h1>$title</h1>
          <p>$description</p>
-      </span>
+      </div>
 Titleandstuff;
 			break;
   }

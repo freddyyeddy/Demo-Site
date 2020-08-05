@@ -7,7 +7,7 @@ all of your Sass files so they can compile into one
 CSS file. 
 
 ******************************************************************/
- 
+
 // Import local Foundation overrides - Don't link to Bower version as it will be overwritten whenever updated
 @import "settings";
 
@@ -67,20 +67,25 @@ CSS file.
 // Import your custom styles
 @import "global";
 
-.Overlay-Container { 
+.Overlay-Container {
     position: relative;
     margin: auto;
 }
 
 .overlay {
-position: absolute;
-width: auto;
-bottom: 0;
-border-radius: .2em;
-padding: .5em;
-background-color: #8a8a8a78;
-left: 50%;
-transform: translate(-50%, -50%);
-color: white;
-transition: all 300ms ease;
-} 
+    position: absolute;
+    width: auto;
+    bottom: 0;
+    border-radius: .2em;
+    padding: .5em;
+    background-color: #8a8a8a78;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    transition: all 300ms ease;
+}
+
+.entry-title,
+.article-header {
+    display: none;
+}

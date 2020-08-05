@@ -21,6 +21,7 @@
 			// centerMode: true, 
 			speed: 300,
 			slidesToShow: 1,
+			
 		});
 		console.log("Initilaized");
 	}

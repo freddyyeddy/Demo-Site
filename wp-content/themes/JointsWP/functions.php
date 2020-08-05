@@ -56,7 +56,7 @@ function my_acf_init_block_types() {
     // Check function exists.
     if( function_exists('acf_register_block_type') ) {
 
-        // registering the block.
+        // registering SlicknSlideBlock
         acf_register_block_type(array(
             'name'              => 'AFC Slider',
             'title'             => 'SlickSLider',
@@ -76,7 +76,23 @@ function my_acf_init_block_types() {
 },
 
         ));
-        }}
+      
+              // registering Hero Block
+        acf_register_block_type(array(
+            'name'              => 'Hero',
+            'title'             => 'Hero Image and Title',
+            'description'       => 'Simple Hero Image With Text Overlay',
+            'render_template'   => 'parts/blocks/hero/hero.php',
+            'category'          => 'widgets',
+            'mode' => 'auto',
+            'align'             => 'full',
+            'icon'              => 'align-center',
+            'keywords'          => array( 'Picture', 'hero', 'header' ),
+
+        ));
+      
+      }
+      }
 
 // Simple Function to Inject Var-Dump Into Console
 

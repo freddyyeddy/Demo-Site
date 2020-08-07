@@ -83,6 +83,16 @@ CSS file.
     transform: translate(-50%, -50%);
     color: white;
     transition: all 300ms ease;
+    
+}
+
+.hero-section{
+  background-size: cover;
+  height: $hero-height;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: right;
 }
 
 .entry-title,

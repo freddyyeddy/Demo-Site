@@ -87,12 +87,20 @@ CSS file.
 }
 
 .hero-section{
-  background-size: cover;
+  background-size: cover !important;
   height: $hero-height;
   text-align: right;
   display: flex;
   align-items: center;
   justify-content: right;
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.4));
+
+}
+.hero-section-text{
+  text-shadow: 0 0px 10px #0a0a0ab8;
+  color: white;
 }
 
 .entry-title,
